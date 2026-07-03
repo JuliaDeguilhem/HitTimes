@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hit Times - Jeu de societe musical</title>
+    <meta
+      name="description"
+      content="Hit Times est un jeu de societe musical qui fait voyager les joueurs de la cassette a la playlist."
+    >
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="stylesheet" href="styles.css?v=6">
+  </head>
+  <body>
+    <header class="site-header" aria-label="Navigation principale">
+      <a class="brand" href="#accueil" aria-label="Hit Times accueil">
+        <img src="assets/hit-times-logo.png" alt="Hit Times">
+      </a>
+      <nav>
+        <a href="#jeu">Le jeu</a>
+        <a href="#decennies">Décennies</a>
+        <a href="#materiel">Matériel</a>
+        <a href="#application">Application</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="accueil" aria-labelledby="hero-title">
+        <div class="sound-orbit" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="hero-copy">
+          <p class="eyebrow">Jeu de société musical</p>
+          <h1 id="hero-title">Hit Times</h1>
+          <p class="tagline">De la cassette à la playlist</p>
+          <p class="hero-text">
+            Écoutez, devinez et traversez quatre décennies de hits. Un jeu
+            d'ambiance coloré où chaque QR code lance un extrait, un défi et
+            une course entre équipes.
+          </p>
+          <div class="hero-actions" aria-label="Actions principales">
+            <a class="button primary" href="#jeu">Découvrir le concept</a>
+            <a class="button secondary" href="#materiel">Voir le matériel</a>
+          </div>
+          <div class="equalizer" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+
+        <img class="hero-product" src="assets/hero-box.png" alt="Boîte du jeu Hit Times">
+      </section>
+
+      <ul class="quick-facts" aria-label="Informations rapides">
+        <li><strong>2-12</strong><span>joueurs</span></li>
+        <li><strong>30</strong><span>minutes</span></li>
+        <li><strong>+10</strong><span>ans</span></li>
+        <li><strong>80</strong><span>cartes</span></li>
+      </ul>
+
+      <section class="intro-band" aria-label="Promesse du jeu">
+        <p>
+          Un voyage musical intergénérationnel, pensé pour les soirées entre
+          amis, les familles et tous les mélomanes qui aiment tester leur
+          mémoire autant que leur rapidité.
+        </p>
+      </section>
+
+      <section class="section gameplay" id="jeu" aria-labelledby="gameplay-title">
+        <div class="section-copy">
+          <p class="eyebrow">Principe</p>
+          <h2 id="gameplay-title">Scannez. Écoutez. Avancez.</h2>
+          <p>
+            Chaque équipe pioche une carte de la couleur de sa case, scanne le
+            QR code, puis tente de retrouver l'artiste, le titre ou l'année de
+            sortie. Plus le défi est précis, plus l'équipe progresse vite sur
+            le plateau.
+          </p>
+        </div>
+
+        <div class="steps" aria-label="Étapes de jeu">
+          <article>
+            <span>01</span>
+            <h3>Piochez</h3>
+            <p>Une carte associée à la décennie indiquée par la case.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Écoutez</h3>
+            <p>Un extrait musical se lance depuis le QR code de la carte.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Répondez</h3>
+            <p>Artiste, titre ou année : choisissez le niveau de défi.</p>
+          </article>
+          <article>
+            <span>04</span>
+            <h3>Avancez</h3>
+            <p>Les bonnes réponses font gagner jusqu'à quatre cases.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section decades" id="decennies" aria-labelledby="decades-title">
+        <div class="decades-heading">
+          <div>
+            <p class="eyebrow">Décennies</p>
+            <h2 id="decades-title">Quatre époques, quatre couleurs.</h2>
+          </div>
+          <p>
+            Le bleu évoque les années 80, le jaune les années 90, le vert les
+            années 2000 et le rose les années 2010. L'orange signale les cases
+            spéciales qui peuvent bousculer la partie.
+          </p>
+        </div>
+
+        <div class="decade-controls" role="tablist" aria-label="Choisir une décennie">
+          <button class="decade-tab is-active" type="button" data-decade="1980" role="tab" aria-selected="true">
+            Année 1980
+          </button>
+          <button class="decade-tab" type="button" data-decade="1990" role="tab" aria-selected="false">
+            Année 1990
+          </button>
+          <button class="decade-tab" type="button" data-decade="2000" role="tab" aria-selected="false">
+            Année 2000
+          </button>
+          <button class="decade-tab" type="button" data-decade="2010" role="tab" aria-selected="false">
+            Année 2010
+          </button>
+        </div>
+
+        <div class="decade-stage" data-current="1980">
+          <div class="decade-card" aria-live="polite">
+            <p class="decade-year" id="decade-year">Année 1980</p>
+            <h3 id="decade-title">Le son cassette</h3>
+            <p id="decade-copy">
+              Des titres culte à reconnaître vite, portés par une identité
+              bleu pastel inspirée des supports analogiques.
+            </p>
+            <dl>
+              <div>
+                <dt>Défi</dt>
+                <dd id="decade-challenge">Retrouver l'artiste ou le groupe.</dd>
+              </div>
+              <div>
+                <dt>Progression</dt>
+                <dd id="decade-points">+2 cases si la réponse est juste.</dd>
+              </div>
+            </dl>
+          </div>
+          <img src="assets/card-fronts.png" alt="Cartes Hit Times avec QR codes par décennie">
+        </div>
+      </section>
+
+      <section class="section material" id="materiel" aria-labelledby="material-title">
+        <div class="section-copy centered">
+          <p class="eyebrow">Matériel</p>
+          <h2 id="material-title">Un objet de jeu pensé pour la table.</h2>
+          <p>
+            Plateau pliable, cartes à coins arrondis, QR codes musicaux et
+            packaging compact : chaque support reprend les codes de l'identité
+            Hit Times pour garder une lecture simple pendant la partie.
+          </p>
+        </div>
+
+        <div class="gallery">
+          <figure class="gallery-item wide">
+            <img src="assets/board-mockup.png" alt="Plateau de jeu Hit Times en perspective">
+            <figcaption>Plateau 350 x 250 mm avec parcours fluide et cases spéciales.</figcaption>
+          </figure>
+          <figure class="gallery-item">
+            <img src="assets/card-backs.png" alt="Dos de cartes Hit Times avec pictogrammes musicaux">
+            <figcaption>Cartes illustrées par décennie : cassette, vinyle, lecteur et casque.</figcaption>
+          </figure>
+          <figure class="gallery-item">
+            <img src="assets/board-flat.png" alt="Vue du plateau Hit Times">
+            <figcaption>Repères visuels rapides pour identifier les catégories.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section rules" aria-labelledby="rules-title">
+        <div class="rules-copy">
+          <p class="eyebrow">Règles</p>
+          <h2 id="rules-title">Une partie facile à lancer.</h2>
+          <p>
+            La première équipe arrivée au bout du plateau déclenche le défi
+            final : retrouver l'artiste, le titre et l'année de sortie de
+            l'extrait. Si tout est juste, elle devient championne de Hit Times.
+          </p>
+        </div>
+
+        <div class="score-list" aria-label="Barème de progression">
+          <article>
+            <strong>+1</strong>
+            <span>année à deux ans près</span>
+          </article>
+          <article>
+            <strong>+2</strong>
+            <span>artiste ou groupe</span>
+          </article>
+          <article>
+            <strong>+3</strong>
+            <span>titre de la chanson</span>
+          </article>
+          <article>
+            <strong>+4</strong>
+            <span>année exacte</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="section app-section" id="application" aria-labelledby="app-title">
+        <div class="app-copy">
+          <p class="eyebrow">Application</p>
+          <h2 id="app-title">Le compagnon qui lance les extraits.</h2>
+          <p>
+            L'application prolonge l'expérience du plateau : accueil, scan QR,
+            règles, paramètres et interface musicale par décennie. Elle garde
+            la même hiérarchie colorée pour que les joueurs se repèrent sans
+            casser le rythme de la partie.
+          </p>
+          <div class="app-actions">
+            <button class="button primary demo-button" type="button" aria-pressed="false">
+              Lancer un extrait
+            </button>
+            <a class="button secondary" href="#accueil">Remonter au début</a>
+          </div>
+          <div class="demo-player" aria-live="polite">
+            <span class="demo-label">Année 1990</span>
+            <div class="demo-track" aria-hidden="true">
+              <span></span>
+            </div>
+            <strong class="demo-status">Prêt pour le blind test</strong>
+          </div>
+        </div>
+        <img src="assets/app-preview.png" alt="Aperçu de l'application mobile Hit Times">
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Hit Times - Projet de jeu de société musical.</p>
+      <p>Identité visuelle : Julia Deguilhem.</p>
+    </footer>
+
+    <script src="script.js?v=3"></script>
+  </body>
+</html>
