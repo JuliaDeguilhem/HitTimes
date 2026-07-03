@@ -136,6 +136,73 @@ const demoStatus = document.querySelector(".demo-status");
 const demoDecades = ["Année 1980", "Année 1990", "Année 2000", "Année 2010"];
 let demoIndex = 1;
 let demoTimer;
+let demoAudioContext;
+let activeDemoNodes = [];
+
+const demoMelody = [
+  { note: 392, start: 0, length: 0.24 },
+  { note: 494, start: 0.26, length: 0.24 },
+  { note: 587, start: 0.52, length: 0.24 },
+  { note: 659, start: 0.78, length: 0.34 },
+  { note: 587, start: 1.18, length: 0.22 },
+  { note: 494, start: 1.42, length: 0.22 },
+  { note: 440, start: 1.66, length: 0.3 },
+  { note: 523, start: 2.04, length: 0.22 },
+  { note: 659, start: 2.28, length: 0.22 },
+  { note: 784, start: 2.52, length: 0.46 },
+];
+
+const stopDemoExcerpt = () => {
+  activeDemoNodes.forEach((node) => {
+    try {
+      node.stop();
+    } catch (error) {
+      // The note may already have finished.
+    }
+  });
+
+  activeDemoNodes = [];
+};
+
+const playDemoExcerpt = () => {
+  const AudioContext = window.AudioContext || window.webkitAudioContext;
+  if (!AudioContext) return;
+
+  demoAudioContext ||= new AudioContext();
+  demoAudioContext.resume();
+  stopDemoExcerpt();
+
+  const startTime = demoAudioContext.currentTime + 0.04;
+  const masterGain = demoAudioContext.createGain();
+  masterGain.gain.setValueAtTime(0.0001, startTime);
+  masterGain.gain.exponentialRampToValueAtTime(0.16, startTime + 0.04);
+  masterGain.gain.exponentialRampToValueAtTime(0.0001, startTime + 3.12);
+  masterGain.connect(demoAudioContext.destination);
+
+  demoMelody.forEach(({ note, start, length }) => {
+    const oscillator = demoAudioContext.createOscillator();
+    const noteGain = demoAudioContext.createGain();
+    const noteStart = startTime + start;
+    const noteEnd = noteStart + length;
+
+    oscillator.type = "triangle";
+    oscillator.frequency.setValueAtTime(note, noteStart);
+    noteGain.gain.setValueAtTime(0.0001, noteStart);
+    noteGain.gain.exponentialRampToValueAtTime(0.95, noteStart + 0.025);
+    noteGain.gain.exponentialRampToValueAtTime(0.0001, noteEnd);
+
+    oscillator.connect(noteGain);
+    noteGain.connect(masterGain);
+    oscillator.start(noteStart);
+    oscillator.stop(noteEnd + 0.02);
+    activeDemoNodes.push(oscillator);
+  });
+
+  window.setTimeout(() => {
+    masterGain.disconnect();
+    activeDemoNodes = [];
+  }, 3300);
+};
 
 demoButton?.addEventListener("click", () => {
   window.clearTimeout(demoTimer);
@@ -147,6 +214,7 @@ demoButton?.addEventListener("click", () => {
   demoPlayer.classList.remove("is-playing");
   void demoPlayer.offsetWidth;
   demoPlayer.classList.add("is-playing");
+  playDemoExcerpt();
 
   demoTimer = window.setTimeout(() => {
     demoStatus.textContent = "Réponse révélée : titre, artiste, année";
